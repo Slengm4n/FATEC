@@ -45,5 +45,3 @@ match switchOP:
             resp = input("Deseja continuar? (S/N)")
             MT = total / i
             print (f"A média total é: {MT:.2f}")
-
-        
