@@ -1,12 +1,11 @@
 
 ClientName = str(input("Nome do cliente: "))
-Order = str(input("Pedido: "))
-Price = float(input("Preço: "))
+
 
 while True:
-    print (ClientName)
-    print (Order)
-    print (Price)
+    Order = str(input("Pedido: 01- Hot Dog | 02- Hamburger | 03- Cheeseburger | 04- Refrigerante lata | 05- Batatas fritas | 06- Misto quente: "))
+
+    
 
     chose = bool(input("Deseja registrar outro cliente? (S/N)"))
     if chose != "S":
