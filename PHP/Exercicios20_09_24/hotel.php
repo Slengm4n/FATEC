@@ -104,4 +104,5 @@ switch ($tipo_apto){
         break;
 
 }
-    
+    echo "<br><br>";
+    echo "<a href='index.php'>Voltar</a>";
