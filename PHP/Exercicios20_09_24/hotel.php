@@ -16,7 +16,7 @@ switch ($tipo_apto){
 
         echo "Nome do cliente: ",$nome_cliente;
         echo "<br>";
-        echo "Quantidade de diárias: R$ ",$qtd_diaria;
+        echo "Quantidade de diárias: ",$qtd_diaria;
         echo "<br>";
         echo "Consumo interno: R$ ", $consumo_int;
         echo "<br>";
@@ -40,7 +40,7 @@ switch ($tipo_apto){
 
         echo "Nome do cliente: ",$nome_cliente;
         echo "<br>";
-        echo "Quantidade de diárias: R$ ",$qtd_diaria;
+        echo "Quantidade de diárias: ",$qtd_diaria;
         echo "<br>";
         echo "Consumo interno: R$ ", $consumo_int;
         echo "<br>";
@@ -64,7 +64,7 @@ switch ($tipo_apto){
 
         echo "Nome do cliente: ",$nome_cliente;
         echo "<br>";
-        echo "Quantidade de diárias: R$ ",$qtd_diaria;
+        echo "Quantidade de diárias: ",$qtd_diaria;
         echo "<br>";
         echo "Consumo interno: R$ ", $consumo_int;
         echo "<br>";
@@ -88,7 +88,7 @@ switch ($tipo_apto){
 
         echo "Nome do cliente: ",$nome_cliente;
         echo "<br>";
-        echo "Quantidade de diárias: R$ ",$qtd_diaria;
+        echo "Quantidade de diárias: ",$qtd_diaria;
         echo "<br>";
         echo "Consumo interno: R$ ", $consumo_int;
         echo "<br>";
