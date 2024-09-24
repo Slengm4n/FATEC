@@ -42,5 +42,27 @@
         </select>
         <input type="submit" value="Enviar">
     </form>
+
+    <h3>Exercício 5</h3>
+    <form action="hotel.php" method="GET">
+        <label for="tipo_apto">Tipo de APTO:</label>
+        <select name="tipo_apto" id="tipo_apto">
+            <option value=1>A</option>
+            <option value=2>B</option>
+            <option value=3>C</option>
+            <option value=4>D</option>
+        </select>
+        <br>
+        <label for="nome_cliente">Nome do cliente:</label>
+        <input name="nome_cliente" type="text" id="nome_cliente">
+        <br>
+        <label for="nome_cliente">N° de diárias:</label>
+        <input name="qtd_diaria" type="number" id="qtd_diaria">
+        <br>
+        <label for="consumo_int">Consumo interno:</label>
+        <input name="consumo_int" type="number" id="consumo_int">
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
 </body>
 </html>
