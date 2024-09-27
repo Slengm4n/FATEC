@@ -1,10 +1,10 @@
 <?php
 
 //Laço feito com for
-$N = 5;
+$N = 10;
 for ($j =1; $j<= $N; $j++){
-    $Quad = $j * $j;
-    echo "Número: $j, Quadrado: $Quad<br>";
+    $Metades = $j / 2;
+    echo "Número: $j, Metade: $Metade<br>";
 }
 
 echo "<br>";
@@ -15,8 +15,8 @@ $N = 10;
 $j = 1;
 
 while ($j <= $N) {
-    $Quad = $j * $j;
-    echo "Número: $j, Quadrado: $Quad<br>";
+    $Metade = $j / 2;
+    echo "Número: $j, Metade: $Metade<br>";
     $j++;
 }
 
@@ -24,11 +24,11 @@ while ($j <= $N) {
 echo "<br>";
 
 //Laço feito com do while
-$N = 15;
+$N = 10;
 $j = 1;
 
 do {
-    $Quad = $j * $j;
-    echo "Número: $j, Quadrado: $Quad<br>";
+    $Metade = $j / 2;
+    echo "Número: $j, Metade: $Metade<br>";
     $j++;
 } while ($j <= $N);
