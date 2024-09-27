@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css"> 
+    <title>Exercícios</title>
 </head>
 <body>
+    <div class="main_content">
     <h3>Exercício 1</h3>
     <form action="media.php" method="GET">
         <label for="media">Média do aluno</label>
         <input type="number" name="media" id="media">
-        <input type="submit" value="Calcular">
+        <input class="btn_submit" type="submit" value="Calcular">
     </form>
 
     <h3>Exercício 2</h3>
     <form action="cargo.php" method="GET">
         <label for="cargo">ID de cargo</label>
         <input name="cargo" type="number" id="cargo">
-        <input type="submit" value="Enviar">
+        <input class="btn_submit" type="submit" value="Enviar">
     </form>
 
     <h3>Exercício 3</h3>
     <form action="eleitoral.php" method="GET">
         <label for="idade">Idade</label>
         <input name="idade" type="number" id="idade">
-        <input type="submit" value="Enivar">
+        <input class="btn_submit" type="submit" value="Enivar">
     </form>
 
     <h3>Exercício 4</h3>
@@ -40,7 +42,7 @@
             <option value=3>Subtração</option>
             <option value=4>Divisão</option>
         </select>
-        <input type="submit" value="Enviar">
+        <input class="btn_submit" type="submit" value="Enviar">
     </form>
 
     <h3>Exercício 5</h3>
@@ -62,7 +64,10 @@
         <label for="consumo_int">Consumo interno:</label>
         <input name="consumo_int" type="number" id="consumo_int">
         <br>
-        <input type="submit" value="Enviar">
+        <div class="input_btn">
+        <input class="btn_submit" type="submit" value="Enviar">
+        </div>
     </form>
+    </div>
 </body>
 </html>
