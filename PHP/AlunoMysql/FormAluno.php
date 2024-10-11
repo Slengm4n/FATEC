@@ -20,6 +20,7 @@
         <input type="number" name="cell" id="cell" placeholder="Telefone">
         <input class="btn_submit" type="submit" value="cadastrar">
     </form>
+    <a href="index.php">Voltar</a>
     </div>
 </body>
 
