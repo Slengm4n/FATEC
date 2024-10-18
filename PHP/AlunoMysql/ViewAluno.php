@@ -18,27 +18,29 @@ $qResult = mysqli_query($conn, $q);
 
 <body>
     <div class="container_main">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Celular</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while($datas = mysqli_fetch_array($qResult)):?>    
-            <tr>
-                <td><?php echo $datas['id'];?></td>
-                <td><?php echo $datas['name'];?></td>
-                <td><?php echo $datas['email'];?></td>
-                <td><?php echo $datas['cell'];?></td>  
-            <?php endwhile; ?>
-            </tr>
-        </tbody>
-    </table>
-    <a href="index.php">Voltar</a>    
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Celular</th>
+                    <th>Atualizar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($datas = mysqli_fetch_array($qResult)): ?>
+                    <tr>
+                        <td><?php echo $datas['name']; ?></td>
+                        <td><?php echo $datas['email']; ?></td>
+                        <td><?php echo $datas['cell']; ?></td>
+                        <td><a href="FormUpdate.php?id=<?php echo $datas['id'];?>">Atualizar</a> </td>
+                        <td><a href="delete.php?id=<?php echo $datas['id']; ?>">Excluir</a></td>
+                    <?php endwhile; ?>
+                    </tr>
+            </tbody>
+        </table>
+        <a href="index.php">Voltar</a>
     </div>
 </body>
 
