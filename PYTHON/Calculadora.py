@@ -11,7 +11,7 @@ while True:
                 
                 print("Resultado é: ", i)
                 
-                
+                    
         case 2:
                 n1 = int(input("Digite o primeiro número: "))
                 n2 = int(input("Digite o segundo número: "))
@@ -36,7 +36,7 @@ while True:
                 if n2 == 0:
                     print("Número dois precisa ser maior que 0")
                 else:
-                    print("Resultado é: ", i)
+                     print("Resultado é: ", i)
 
         case default:
             print("Operação inválida :(")
