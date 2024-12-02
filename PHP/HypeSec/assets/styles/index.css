@@ -1,0 +1,47 @@
+@import url('./base/');
+@import url('./components/header.css');
+
+.container-index {
+    background-image: url(../IMG/wallpaper.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 1000px;
+    max-width: 100%;
+}
+
+.title-index {
+    color: #000000;
+    padding-left: 50px;
+    padding-top: 300px;
+    font-size: 30px;
+}
+
+.text-index {
+    color: #000000;
+    width: 50%;
+    font-size: 15px;
+    padding-left: 50px;
+    padding-right: 100px;
+    text-align: justify;
+}
+
+.btn-index {
+    padding-top: 50px;
+    padding-left: 50px;
+}
+
+.btn-comecar {
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.btn-comecar:hover {
+    color: red;
+}
