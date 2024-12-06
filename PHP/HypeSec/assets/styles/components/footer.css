@@ -1,0 +1,55 @@
+.barra-promo{
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: red;
+    height: 100px;
+  }
+  
+  .imagem-promo{
+    align-items: center;
+    padding-left: 110px;
+    display: flex;
+  }
+  
+  .promo-title{
+    padding-left: 600px;
+    display: flex;
+  }
+  
+  .promo-text{
+    padding-left: 600px;
+    display: flex;
+  }
+  
+  .footer{
+    background-color: rgb(255, 255, 255)
+  }
+  
+  .email-logo{
+    padding-right: 10px;
+    width: 50px;
+    height: 30px;
+  }
+  
+  .footer-img{
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer-text{
+    padding-bottom: 30px;
+    text-align: center;
+    font-size: 15px;
+  }
+  
+  .social-media{
+    gap: 15px;
+    margin-bottom: 30px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+  }

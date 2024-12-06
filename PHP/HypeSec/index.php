@@ -26,10 +26,10 @@
             <a href="./public/opcoes.php" class="btn-comecar">COMEÇAR</a>
         </div>
     </div>
-
+    
     <article class="carrossel-article">
         <div class="carrossel-title">
-            <h1>CONHEÇA NOSSO ESTABELECIMENTO</h1>
+            <h1>CONHEÇA NOSSOS PRODUTOS</h1>
         </div>
         <div class="carrossel">
             <div class="slider">
@@ -40,26 +40,22 @@
                     <input type="radio" name="radio-btn" id="radio3">
                     <input type="radio" name="radio-btn" id="radio4">
                     <!--Fim Radio Buttons-->
-
+    
                     <!--Slide Images-->
                     <div class="slide first">
-                        <img src="./assets/img/LS1.png"
-                            alt="Img1">
+                        <img src="./assets/img/teste.jpg" alt="Img1">
                     </div>
                     <div class="slide">
-                        <img src="./assets/img/LS2.png"
-                            alt="Img2">
+                        <img src="./assets/img/teste1.jpg" alt="Img2">
                     </div>
                     <div class="slide">
-                        <img src="./assets/img/LS3.png"
-                            alt="Img3">
+                        <img src="./assets/img/teste2.jpg" alt="Img3">
                     </div>
                     <div class="slide">
-                        <img src="./assets/img/LS4.png"
-                            alt="Img4">
+                        <img src="./assets/img/teste3.jpg" alt="Img4">
                     </div>
                     <!--Fim Slide Images-->
-
+    
                     <!--Navigation Auto-->
                     <div class="navigation-auto">
                         <div class="auto-btn1"></div>
@@ -67,16 +63,16 @@
                         <div class="auto-btn3"></div>
                         <div class="auto-btn4"></div>
                     </div>
-
+    
                 </div>
-
+    
                 <div class="manual-navigation">
                     <label for="radio1" class="manual-btn"></label>
                     <label for="radio2" class="manual-btn"></label>
                     <label for="radio3" class="manual-btn"></label>
                     <label for="radio4" class="manual-btn"></label>
                 </div>
-
+    
             </div>
         </div>
     </article>
@@ -86,7 +82,7 @@
             <img src="./assets/img/LSCUSTOM.png">
         </div>
         <div class="footer-text">
-            <p>Copyright©2023 LSCUSTOM.LTDA</p>
+            <p>Copyright©2023 HYPESEC.LTDA</p>
         </div>
 
         <div class="social-media">
@@ -96,5 +92,7 @@
         </div>
     </footer>
     </div>
+
+    <script src="./assets/scripts/slider.js"></script>
     </body>
     </html>

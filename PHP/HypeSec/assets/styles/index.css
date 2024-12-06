@@ -1,8 +1,11 @@
-@import url('./base/');
+@import url('./base/reset.css');
 @import url('./components/header.css');
+@import url('./components/carrossel.css');
+@import url('./components/slider.css');
+@import url('./components/footer.css');
 
 .container-index {
-    background-image: url(../IMG/wallpaper.png);
+    background-image: url('../img/BG.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -45,3 +48,4 @@
 .btn-comecar:hover {
     color: red;
 }
+
