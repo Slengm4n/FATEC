@@ -8,7 +8,7 @@ $querry_id = "DELETE FROM products WHERE id = '$id' ";
 
 if(mysqli_query($conn, $querry_id))
 {
-    header("Location: stock.php");
+    header("Location: ../pages/stock.php?status=success");
 }else{
-    echo "Erro ao excluir cadastro :(";
+    header("Location: ../pages/stock.php?status=error");
 }

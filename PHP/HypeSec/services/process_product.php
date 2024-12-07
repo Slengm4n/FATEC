@@ -12,7 +12,7 @@ $query = "INSERT INTO products (pd_name, pd_description, pd_code, pd_category, p
            VALUES ('$pd_name', '$pd_description', '$pd_code', '$pd_category', '$pd_quantity', '$pd_valor');";
 
 if (mysqli_query($conn, $query)) {
-    echo "Cadastro realizado com sucesso!!";
+    header("Location: ../pages/product_form.php?status=success");
 } else {
-    echo "Erro ao cadastrar";
+    header("Location: ../pages/product_form.php?status=error");
 }

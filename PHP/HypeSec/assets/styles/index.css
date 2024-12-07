@@ -1,27 +1,83 @@
-@import url('./base/reset.css');
-@import url('./components/header.css');
-@import url('./components/carrossel.css');
-@import url('./components/slider.css');
-@import url('./components/footer.css');
+/*IMPORTS*/
+@import url(./components/loading.css);
 
+
+/* Reset de Estilos Globais */
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+/* Estilos Globais do Corpo */
+/*INICIO CSS INDEX.HTML<-------------------------------------------------------------------------------------------------------->*/
+body {
+  max-width: 100%;
+    background-color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilos do Cabeçalho */
+.Header {
+    background-color: rgb(0, 0, 0);
+    height: 70px;
+    width: 100%; /* (corrigir para width: 100%) */
+}
+
+label.logo {
+    color: white;
+    font-size: 30px;
+    line-height: 70px;
+    padding: 0 100px;
+    font-weight: bold;
+}
+
+nav ul {
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+    line-height: 70px;
+    margin: 0 5px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 7px;
+    border-radius: 3px;
+}
+
+
+a:hover {
+    transition: all 1s ease-out;
+    color: red;
+}
+
+/* Conteúdo da Página Inicial */
 .container-index {
     background-image: url('../img/BG.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 1000px;
+    height: 910px;
     max-width: 100%;
 }
 
 .title-index {
-    color: #000000;
+    color: #ffffff;
     padding-left: 50px;
     padding-top: 300px;
     font-size: 30px;
 }
 
 .text-index {
-    color: #000000;
+    color: #ffffff;
     width: 50%;
     font-size: 15px;
     padding-left: 50px;
@@ -49,3 +105,401 @@
     color: red;
 }
 
+/* Carrossel de Imagens */
+.carrossel-article{
+  background-color: #1d1d1d;
+}
+.carrossel-title{
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 100px;
+}
+.carrossel{
+  padding-bottom: 10%;
+  padding-top: 20px;
+  display: flex;
+}
+
+.slider{
+  display: inline-block;
+  margin:  auto;
+  width: 800px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.slides{
+  width: 400%;
+  height: 400px;
+  display: flex;
+}
+
+.slides input{
+  display: none;
+}
+
+
+.slide{
+  transition: 2s;
+  width: 25%;
+  position: relative;;
+}
+
+.slide img{
+  width: 800px;
+}
+
+.manual-navigation{
+  position: absolute;
+  width: 800px;
+  margin-top: -40px;
+  display: flex;
+  justify-content: center; 
+}
+
+.manual-btn{
+  border: 2px solid #FFF;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.manual-btn:not(:last-child){
+  margin-right: 40px;
+}
+
+.manual-btn:hover{
+  background-color: #FFF
+}
+
+#radio1:checked ~ .first{
+  margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+  margin-left: -25%;
+}
+
+#radio3:checked ~ .first{
+  margin-left: -50%;
+}
+
+#radio4:checked ~ .first{
+  margin-left: -75%;
+}
+
+.navigation-auto div{
+  border: 2px solid #d16f24;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.navigation-auto{
+ position: absolute;
+ width: 800px;
+ margin-top: 360px;
+ display: flex;
+ justify-content: center;
+}
+
+.navigation-auto div:not(:last-child){
+  margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1{
+  background-color: #FFF;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2{
+  background-color: #FFF;
+}  
+
+#radio3:checked ~ .navigation-auto .auto-btn3{
+  background-color: #FFF;
+}  
+
+#radio4:checked ~ .navigation-auto .auto-btn4{
+  background-color: #FFF;
+}  
+/*FIM CSS INDEX.HTML<-------------------------------------------------------------------------------------------------------->*/
+
+
+
+/*INICIO CSS OPCOES.PHP<-------------------------------------------------------------------------------------------------------->*/
+.container-opcoes{
+    padding-top: 100px;
+    text-align: center;
+  }
+  
+  .title{
+    font-size: 35px;
+  }
+  
+  .text{
+    font-size: 15px;
+  }
+/*FIM CSS OPCOES.PHP<-------------------------------------------------------------------------------------------------------->*/
+
+/*CARDS<-------------------------------------------------------------------------------------------------------->*/
+.cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    font-family: "Poppins";
+    gap:16px;
+  }
+  .cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    font-family: "Poppins";
+    gap: 16px;
+  }
+  
+  .card {
+    display: flex; /* Adicionado para tornar os elementos filhos flexíveis */
+    flex-direction: column; /* Ajusta o layout para coluna */
+    width: 180px;
+    height: 260px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 12px #aaaa;
+    transition: transform .2s;
+  }
+  
+  .card:hover{
+    transform: scale(1.1);
+  }
+
+  .card img {
+    width: 100%;
+    height: 130px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .card .card-link {
+  
+    background-color: #5b6268;
+    height: 30px;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    max-width: 150px;
+    text-align: center;
+    margin: auto;
+    border-radius: 4px;
+    display: flex; /* Adicionado para centralizar o texto verticalmente */
+    justify-content: center; /* Adicionado para centralizar o texto horizontalmente */
+    align-items: center; /* Adicionado para centralizar o texto verticalmente */
+  }
+  
+  .card .card-link a {
+    display: block;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 30px; /* Adicionado para centralizar verticalmente o texto */
+  }
+  
+  .card-title {
+    padding-top: 5px;
+    font-size: 10px;
+    text-align: center;
+  }
+  
+  .card-desc {
+    padding-bottom: 13px;
+    font-weight: lighter;
+    font-size: 10px;
+    text-align: center;
+  }
+  
+  .card-link a:hover{
+    color: #000000;
+  }
+/*FIM CARDS<------------------------------------------------------------->*/
+/*FIM CSS OPCOES.PHP<-------------------------------------------------------------------------------------------------------->*/
+
+
+
+/*INICIO CSS PAGES.PHP<-------------------------------------------------------------------------------------------------------->*/
+  .body-pages{
+    padding-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+   .container-pages{
+    background-color: #e2e2e2;
+    border-radius: 14px;
+    margin: 14px;
+    max-width: 600px;
+    width: 100%;
+    box-sizing: 0 3px 5px rgba(0,0,0, 0.5);
+    overflow: hidden;
+  }
+  
+   .header-pages{
+    background-color: #000000;
+    padding: 24px;
+    text-align: center;
+    color: #FFF;
+  }
+  
+  .form{
+    padding: 18px;
+  }
+  
+  .form-content{
+    margin-bottom: 8px;
+    padding-bottom: 18px;
+    position: relative;
+  }
+  
+  .form-content label{
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+  
+  .form-content input{
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    padding: 8px;
+    border: 2px solid #dfdfdf;
+  }
+
+  
+  .form button{
+    background-color: #000000;
+    color: #FFF;
+    width: 100%;
+    border-radius: 14px;
+    padding: 10px;
+    border: 0;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 14px;
+  }
+
+  .header_stock{
+    font-weight: 200;
+    text-transform: uppercase;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+/*FIM CSS PAGES.PHP<-------------------------------------------------------------------------------------------------------->*/
+
+
+/*INICIO CSS SELECT.PHP<-------------------------------------------------------------------------------------------------------->*/
+.Header-select{
+    background-color: rgb(0, 0, 0);
+    height: 70px;
+    width: 100%;
+}
+.content-table {
+    border-collapse: collapse;
+    margin: 25px auto; /* Ajuste o valor 'auto' para centralizar a tabela */
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 45px;
+    text-align: left; /* ou 'center' ou 'right' com base na sua preferência */
+    vertical-align: middle;
+}
+
+.content-table thead tr {
+    background-color: #010303;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #000000;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #000000;
+}
+/*FIM CSS SELECT.PHP<-------------------------------------------------------------------------------------------------------->*/
+
+.barra-promo{
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: red;
+  height: 100px;
+}
+
+.imagem-promo{
+  align-items: center;
+  padding-left: 110px;
+  display: flex;
+}
+
+.promo-title{
+  padding-left: 600px;
+  display: flex;
+}
+
+.promo-text{
+  padding-left: 600px;
+  display: flex;
+}
+
+.footer{
+  background-color: rgb(255, 255, 255)
+}
+
+.email-logo{
+  padding-right: 10px;
+  width: 50px;
+  height: 30px;
+}
+
+.footer-img{
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-text{
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.social-media{
+  gap: 15px;
+  margin-bottom: 30px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
