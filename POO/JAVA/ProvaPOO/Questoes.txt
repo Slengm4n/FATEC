@@ -1,0 +1,72 @@
+2 - Em relação à programação orientada a objetos, é correto aﬁrmar que: objetos são instâncias de um atributo
+3 - Na programação orientada a objetos, a instanciação de objetos tem o objetivo de: definir atributos e métodos de uma classe.
+4 - Na linguagem Java, a política de acesso que é utilizado para especificar que uma variável não pode ser visívivel em outras classes é: private
+5 - Na programação orientada a objetos, há os métodos chamados de construtores, sobre os quais é correto afirmar que: são executados sempre que um atributo de um dado objeto for consultado.
+6 - O que é encapsulamento em Java? : A capacidade de um objeto herdar propriedades de outro objeto.
+7 - Por que usar a sobrecarga de construtores em Java? Para permitir que objetos sejam criados com diferentes formas de inicialização.
+8 - O que é a Máquina Virtual Java (JVM)? Um compilador de código Java para o sistema operacional.
+9 - Qual o comando que é utilizado no Git para iniciar um novo repositório no terminal (GitBash): git init repository
+10 - Qual a diferença do Git e do GitHub:Github é uma plataforma de hospedagem e versionamento de códigos, assim podendo compartilhar, armazenar e convidar contribuidores. Já o Git é linguagem também relacionada a criação de repositórios, atualizações de códigos, deletar e versionar o mesmos. 
+11 - O que o código abaixo imprime? O código imprime 10.
+12 - Qual das alternativas representa uma conversão explícita (casting)? double y = 5
+13 - Qual dos comandos abaixo é utilizado para preparar arquivos para o commit no Git? git add
+14- public class pedidos {
+
+    private int codigoPedido;
+    private String nomeProduto;
+    private int quantidade;
+    private double precoUnitario;
+    private String dataPedido;
+15- ublic pedidos(int codigoPedido, String nomeProduto, int quantidade, double precoUnitario, String dataPedido) {
+        this.codigoPedido = codigoPedido;
+        this.nomeProduto = nomeProduto;
+        this.quantidade = quantidade;
+        this.precoUnitario = precoUnitario;
+        this.dataPedido = dataPedido;
+    }
+
+    public void setCodigoPedido(int codigoPedido){
+        this.codigoPedido = codigoPedido;
+    }
+
+    public void setNomeProduto(String nomeProduto){
+        this.nomeProduto = nomeProduto;
+    }
+
+    public void setQuantidade(int quantidade){
+        this.quantidade = quantidade;
+    }
+
+    public void setPrecoUnitario(double precoUnitario){
+        this.precoUnitario = precoUnitario;
+    }
+
+    public void setDataPedido(String dataPedido){
+        this.dataPedido = dataPedido;
+    }
+
+    public int getCodigoPedido(){
+        return this.codigoPedido;
+    }
+
+    public String getNomeProduto(){
+        return this.nomeProduto;
+    }
+
+    public int getQuantidade(){
+        return this.quantidade;
+    }
+
+    public double getPrecoUnitario(){
+        return this.precoUnitario;
+    }
+
+    public String getDataPedido(){
+        return this.dataPedido;
+    }
+
+}
+
+16- public class pedido {      public static void main(String[] args) {         pedidos pedido = new pedidos(0, null, 0, 0, null);         pedido.setCodigoPedido(2024);         pedido.setNomeProduto("Notebook Dell");         pedido.setQuantidade(2);         pedido.setPrecoUnitario(3599.90);         pedido.setDataPedido("2025-05-02");     } }
+17- Se não utilizar métodos para o objeto carro, toda vez que tiver que criar um nome ira ter que reescrever tudo que possui num carro, ou os atributos desejados. Já utilizando métodos dentro de uma classe é possível criar "pre-defiinções" como: Número de portas, Cor, Potência, Ano etc. Que usando os métodos de acesso simplifica na hora de criar um nome objeto e atribuir as características desejadas.
+18- Classe é a estrutura utilizada para instanciar um objeto com métodos e atributos, assim o objeto podendo ser replicado inúmeras vezes usando a classe como base.
