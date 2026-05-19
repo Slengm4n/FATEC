@@ -1,4 +1,4 @@
-package com.sistema.estacionamento.service; // <-- Faltou essa linha antes!
+package com.sistema.estacionamento.service;
 
 import java.time.LocalDate;
 import java.util.List;

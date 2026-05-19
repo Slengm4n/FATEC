@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Usuários</title>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container{
+            background: white;
+            width: 500px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 25px;
+            color: #0f172a;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input{
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        button{
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover{
+            background: #1d4ed8;
+        }
+
+        .buscar{
+            margin-top: 30px;
+        }
+
+        .resultado{
+            margin-top: 20px;
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Cadastro de Usuários</h1>
+
+        <!-- CREATE -->
+        <form action="/usuarios-html/salvar" method="post">
+
+            <input type="text" 
+                   name="nomeUsuario" 
+                   placeholder="Nome do usuário"
+                   required>
+
+            <input type="email" 
+                   name="email" 
+                   placeholder="Email"
+                   required>
+
+            <input type="text" 
+                   name="telefone" 
+                   placeholder="Telefone">
+
+            <button type="submit">
+                Salvar Usuário
+            </button>
+
+        </form>
+
+        <!-- BUSCAR -->
+        <div class="buscar">
+
+            <h1>Buscar Usuário</h1>
+
+            <form id="formBuscar">
+
+                <input type="number" 
+                       id="idBuscar"
+                       placeholder="Digite o ID">
+
+                <button type="submit">
+                    Buscar
+                </button>
+
+            </form>
+
+            <div class="resultado" id="resultado">
+
+                Nenhum usuário buscado.
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const formBuscar = document.getElementById('formBuscar');
+
+        formBuscar.addEventListener('submit', async (e) => {
+
+            e.preventDefault();
+
+            const id = document.getElementById('idBuscar').value;
+
+            const resposta = await fetch(
+                `/usuarios-html/buscar?id=${id}`
+            );
+
+            const usuario = await resposta.json();
+
+            document.getElementById('resultado').innerHTML = `
+                <p><strong>ID:</strong> ${usuario.id}</p>
+                <p><strong>Nome:</strong> ${usuario.nomeUsuario}</p>
+                <p><strong>Email:</strong> ${usuario.email}</p>
+                <p><strong>Telefone:</strong> ${usuario.telefone}</p>
+            `;
+
+        });
+
+    </script>
+
+</body>
+</html>
