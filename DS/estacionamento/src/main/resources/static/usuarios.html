@@ -3,161 +3,654 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Usuários</title>
+    <title>Gestão de Usuários</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 
     <style>
-
-        *{
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
         }
 
-        body{
-            background: #0f172a;
+        :root {
+            --bg-page:        #f4f4f4;
+            --bg-card:        #ffffff;
+            --bg-surface:     #fafafa;
+            --bg-input:       #f7f7f7;
+            --border:         #e5e5e5;
+            --border-focus:   #888888;
+            --text-primary:   #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --text-muted:     #a3a3a3;
+            --accent:         #1a1a1a;
+            --accent-hover:   #333333;
+            --save-bg:        #3a3a3a;
+            --save-hover:     #1a1a1a;
+            --danger-text:    #7a2020;
+            --danger-border:  rgba(120,32,32,0.2);
+            --danger-hover:   #f5f0f0;
+            --editing-bg:     #f9f9f9;
+            --radius-md:      6px;
+            --radius-lg:      10px;
+            --shadow-card:    0 1px 2px rgba(0,0,0,0.06);
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background: var(--bg-page);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            align-items: flex-start;
+            padding: 48px 16px;
         }
 
-        .container{
-            background: white;
-            width: 500px;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+        .app {
+            width: 100%;
+            max-width: 860px;
         }
 
-        h1{
-            text-align: center;
-            margin-bottom: 25px;
-            color: #0f172a;
+        /* ── Header ── */
+        .page-header { margin-bottom: 28px; }
+        .page-header h1 {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+        .page-header p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
         }
 
-        form{
+        /* ── Card ── */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        .card-header {
+            padding: 13px 20px;
+            border-bottom: 1px solid var(--border);
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-surface);
         }
-
-        input{
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 15px;
+        .card-header span {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
+        .card-header i { font-size: 15px; color: var(--text-muted); }
 
-        button{
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
+        /* ── Form ── */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 12px;
+            padding: 18px 20px;
+            align-items: end;
+        }
+        .field label {
+            display: block;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .field input {
+            width: 100%;
+            padding: 8px 11px;
+            font-size: 13px;
+            font-family: 'Sora', sans-serif;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .field input:focus {
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+            background: #fff;
+        }
+        .field input::placeholder { color: var(--text-muted); }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 15px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Sora', sans-serif;
+            border-radius: var(--radius-md);
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.15s;
+            border: none;
+            white-space: nowrap;
+            line-height: 1;
+        }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-sm { padding: 5px 10px; font-size: 12px; }
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        .btn-ghost:hover { background: var(--bg-surface); color: var(--text-primary); }
+        .btn-save { background: var(--save-bg); color: #fff; }
+        .btn-save:hover { background: var(--save-hover); }
+        .btn-cancel {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        .btn-cancel:hover { background: var(--bg-surface); }
+        .btn-danger {
+            background: transparent;
+            color: var(--danger-text);
+            border: 1px solid var(--danger-border);
+        }
+        .btn-danger:hover { background: var(--danger-hover); }
+
+        /* ── Toolbar ── */
+        .toolbar {
+            padding: 11px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-surface);
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 7px 11px;
+            flex: 1;
+            transition: border-color 0.15s;
+        }
+        .search-box:focus-within { border-color: var(--border-focus); }
+        .search-box i { font-size: 14px; color: var(--text-muted); }
+        .search-box input {
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            font-family: 'Sora', sans-serif;
+            color: var(--text-primary);
+            outline: none;
+            width: 100%;
+        }
+        .search-box input::placeholder { color: var(--text-muted); }
+        .count-badge {
+            font-size: 11px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 4px 11px;
+            border-radius: 20px;
+            white-space: nowrap;
         }
 
-        button:hover{
-            background: #1d4ed8;
+        /* ── Table ── */
+        .table-wrap { overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        thead th {
+            padding: 9px 20px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.1s;
+        }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:hover { background: #fafafa; }
+        tbody tr.editing { background: var(--editing-bg); }
+        td { padding: 11px 20px; vertical-align: middle; color: var(--text-primary); }
+
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e8e8e8;
+            color: #4a4a4a;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .user-cell { display: flex; align-items: center; gap: 10px; }
+        .user-name { font-weight: 500; color: var(--text-primary); }
+        .user-email { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+
+        .actions { display: flex; gap: 6px; justify-content: flex-end; }
+
+        .edit-input {
+            padding: 6px 9px;
+            font-size: 12px;
+            font-family: 'Sora', sans-serif;
+            border: 1px solid #cccccc;
+            border-radius: var(--radius-md);
+            background: #fff;
+            color: var(--text-primary);
+            width: 100%;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.04);
         }
 
-        .buscar{
-            margin-top: 30px;
+        .id-badge {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: monospace;
+            background: var(--bg-input);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
         }
 
-        .resultado{
-            margin-top: 20px;
-            background: #f1f5f9;
-            padding: 15px;
-            border-radius: 8px;
+        .empty-state {
+            padding: 48px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .empty-state i {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 10px;
+            opacity: 0.3;
         }
 
+        .loading-row td {
+            text-align: center;
+            padding: 32px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Sora', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.22s;
+            pointer-events: none;
+            z-index: 999;
+            border: 1px solid var(--border);
+        }
+        .toast.success { background: #1a1a1a; color: #f0f0f0; border-color: #1a1a1a; }
+        .toast.error   { background: #ffffff; color: var(--danger-text); border-color: var(--danger-border); }
+        .toast.show    { opacity: 1; transform: translateY(0); }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            body { padding: 24px 12px; }
+            .form-grid { grid-template-columns: 1fr; }
+            thead th:nth-child(1),
+            td:nth-child(1) { display: none; }
+        }
     </style>
-
 </head>
 <body>
 
-    <div class="container">
+    <div class="app">
 
-        <h1>Cadastro de Usuários</h1>
+        <div class="page-header">
+            <h1>Gestão de Usuários</h1>
+            <p>Cadastre, edite e remova usuários em uma única tela</p>
+        </div>
 
-        <!-- CREATE -->
-        <form action="/usuarios-html/salvar" method="post">
-
-            <input type="text" 
-                   name="nomeUsuario" 
-                   placeholder="Nome do usuário"
-                   required>
-
-            <input type="email" 
-                   name="email" 
-                   placeholder="Email"
-                   required>
-
-            <input type="text" 
-                   name="telefone" 
-                   placeholder="Telefone">
-
-            <button type="submit">
-                Salvar Usuário
-            </button>
-
-        </form>
-
-        <!-- BUSCAR -->
-        <div class="buscar">
-
-            <h1>Buscar Usuário</h1>
-
-            <form id="formBuscar">
-
-                <input type="number" 
-                       id="idBuscar"
-                       placeholder="Digite o ID">
-
-                <button type="submit">
-                    Buscar
-                </button>
-
-            </form>
-
-            <div class="resultado" id="resultado">
-
-                Nenhum usuário buscado.
-
+        <!-- ── CADASTRO ── -->
+        <div class="card">
+            <div class="card-header">
+                <i class="ti ti-user-plus"></i>
+                <span>Novo usuário</span>
             </div>
+            <div class="form-grid">
+                <div class="field">
+                    <label>Nome</label>
+                    <input type="text" id="inp-nome" placeholder="Nome completo">
+                </div>
+                <div class="field">
+                    <label>E-mail</label>
+                    <input type="email" id="inp-email" placeholder="email@exemplo.com">
+                </div>
+                <div class="field">
+                    <label>Telefone</label>
+                    <input type="text" id="inp-tel" placeholder="(11) 99999-0000">
+                </div>
+                <button class="btn btn-primary" onclick="addUser()">
+                    <i class="ti ti-plus"></i> Cadastrar
+                </button>
+            </div>
+        </div>
 
+        <!-- ── LISTAGEM ── -->
+        <div class="card">
+            <div class="toolbar">
+                <div class="search-box">
+                    <i class="ti ti-search"></i>
+                    <input type="text" id="search-inp"
+                           placeholder="Buscar por nome, e-mail ou telefone..."
+                           oninput="filterTable()">
+                </div>
+                <span class="count-badge" id="count-badge">0 usuários</span>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:50px">ID</th>
+                            <th>Usuário</th>
+                            <th style="width:160px">Telefone</th>
+                            <th style="text-align:right; width:160px">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <tr class="loading-row">
+                            <td colspan="4">
+                                <i class="ti ti-loader-2"></i> Carregando usuários...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="empty-state" id="empty-state" style="display:none">
+                    <i class="ti ti-users"></i>
+                    Nenhum usuário encontrado
+                </div>
+            </div>
         </div>
 
     </div>
 
+    <div class="toast" id="toast"></div>
+
     <script>
 
-        const formBuscar = document.getElementById('formBuscar');
+        /* ════════════════════════════════════
+           CONFIGURAÇÃO — ajuste as URLs aqui
+           ════════════════════════════════════ */
+        const API = {
+            listar:     () => fetch('/usuarios-html/listar'),
+            salvar:     (body) => fetch('/usuarios-html/salvar', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(body)
+                        }),
+            atualizar:  (id, body) => fetch(`/usuarios-html/atualizar/${id}`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(body)
+                        }),
+            excluir:    (id) => fetch(`/usuarios-html/excluir/${id}`, {
+                            method: 'DELETE'
+                        })
+        };
 
-        formBuscar.addEventListener('submit', async (e) => {
+        /* ════════════════════════════════════
+           ESTADO LOCAL
+           ════════════════════════════════════ */
+        let allUsers   = [];   // lista completa vinda do backend
+        let editingId  = null; // ID do usuário em edição
 
-            e.preventDefault();
+        /* ════════════════════════════════════
+           INICIALIZAÇÃO
+           ════════════════════════════════════ */
+        async function init() {
+            try {
+                const res  = await API.listar();
+                if (!res.ok) throw new Error('Erro ao carregar usuários');
+                allUsers = await res.json();
+                renderTable();
+            } catch (err) {
+                showToast('Não foi possível carregar os usuários', 'error');
+                document.getElementById('tbody').innerHTML =
+                    `<tr class="loading-row"><td colspan="4">Erro ao carregar dados.</td></tr>`;
+            }
+        }
 
-            const id = document.getElementById('idBuscar').value;
+        /* ════════════════════════════════════
+           CREATE
+           ════════════════════════════════════ */
+        async function addUser() {
+            const nome  = document.getElementById('inp-nome').value.trim();
+            const email = document.getElementById('inp-email').value.trim();
+            const tel   = document.getElementById('inp-tel').value.trim();
 
-            const resposta = await fetch(
-                `/usuarios-html/buscar?id=${id}`
+            if (!nome || !email) {
+                showToast('Nome e e-mail são obrigatórios', 'error');
+                return;
+            }
+
+            try {
+                const res  = await API.salvar({ nomeUsuario: nome, email, telefone: tel });
+                if (!res.ok) throw new Error();
+                const novo = await res.json();   // espera o objeto salvo (com id gerado)
+                allUsers.push(novo);
+                document.getElementById('inp-nome').value  = '';
+                document.getElementById('inp-email').value = '';
+                document.getElementById('inp-tel').value   = '';
+                showToast('Usuário cadastrado com sucesso');
+                renderTable();
+            } catch {
+                showToast('Erro ao cadastrar usuário', 'error');
+            }
+        }
+
+        /* ════════════════════════════════════
+           UPDATE
+           ════════════════════════════════════ */
+        function startEdit(id) {
+            editingId = id;
+            renderTable();
+            setTimeout(() => document.getElementById('edit-nome-' + id)?.focus(), 30);
+        }
+
+        async function saveEdit(id) {
+            const nome  = document.getElementById('edit-nome-'  + id).value.trim();
+            const email = document.getElementById('edit-email-' + id).value.trim();
+            const tel   = document.getElementById('edit-tel-'   + id).value.trim();
+
+            if (!nome || !email) {
+                showToast('Nome e e-mail são obrigatórios', 'error');
+                return;
+            }
+
+            try {
+                const res = await API.atualizar(id, { nomeUsuario: nome, email, telefone: tel });
+                if (!res.ok) throw new Error();
+                const atualizado = await res.json();
+                allUsers = allUsers.map(u => u.id === id ? atualizado : u);
+                editingId = null;
+                showToast('Usuário atualizado');
+                renderTable();
+            } catch {
+                showToast('Erro ao atualizar usuário', 'error');
+            }
+        }
+
+        function cancelEdit() {
+            editingId = null;
+            renderTable();
+        }
+
+        /* ════════════════════════════════════
+           DELETE
+           ════════════════════════════════════ */
+        async function deleteUser(id) {
+            if (!confirm('Deseja realmente excluir este usuário?')) return;
+            try {
+                const res = await API.excluir(id);
+                if (!res.ok) throw new Error();
+                allUsers = allUsers.filter(u => u.id !== id);
+                if (editingId === id) editingId = null;
+                showToast('Usuário removido');
+                renderTable();
+            } catch {
+                showToast('Erro ao excluir usuário', 'error');
+            }
+        }
+
+        /* ════════════════════════════════════
+           RENDER
+           ════════════════════════════════════ */
+        function filterTable() { renderTable(); }
+
+        function renderTable() {
+            const q = document.getElementById('search-inp').value.toLowerCase();
+            const filtered = allUsers.filter(u =>
+                (u.nomeUsuario || '').toLowerCase().includes(q) ||
+                (u.email       || '').toLowerCase().includes(q) ||
+                (u.telefone    || '').includes(q)
             );
 
-            const usuario = await resposta.json();
+            const badge = document.getElementById('count-badge');
+            badge.textContent = filtered.length === 1
+                ? '1 usuário'
+                : `${filtered.length} usuários`;
 
-            document.getElementById('resultado').innerHTML = `
-                <p><strong>ID:</strong> ${usuario.id}</p>
-                <p><strong>Nome:</strong> ${usuario.nomeUsuario}</p>
-                <p><strong>Email:</strong> ${usuario.email}</p>
-                <p><strong>Telefone:</strong> ${usuario.telefone}</p>
-            `;
+            const empty = document.getElementById('empty-state');
+            const tbody = document.getElementById('tbody');
 
-        });
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+
+            tbody.innerHTML = filtered.map(u => {
+                const id    = u.id;
+                const nome  = u.nomeUsuario || '';
+                const email = u.email       || '';
+                const tel   = u.telefone    || '';
+
+                if (editingId === id) {
+                    return `
+                    <tr class="editing">
+                        <td><span class="id-badge">#${id}</span></td>
+                        <td>
+                            <div style="display:flex;flex-direction:column;gap:6px">
+                                <input class="edit-input" id="edit-nome-${id}"
+                                       value="${esc(nome)}" placeholder="Nome completo">
+                                <input class="edit-input" id="edit-email-${id}"
+                                       value="${esc(email)}" placeholder="E-mail" type="email">
+                            </div>
+                        </td>
+                        <td>
+                            <input class="edit-input" id="edit-tel-${id}"
+                                   value="${esc(tel)}" placeholder="Telefone">
+                        </td>
+                        <td>
+                            <div class="actions">
+                                <button class="btn btn-sm btn-save" onclick="saveEdit(${id})">
+                                    <i class="ti ti-check"></i> Salvar
+                                </button>
+                                <button class="btn btn-sm btn-cancel" onclick="cancelEdit()">
+                                    <i class="ti ti-x"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>`;
+                }
+
+                return `
+                <tr>
+                    <td><span class="id-badge">#${id}</span></td>
+                    <td>
+                        <div class="user-cell">
+                            <div class="avatar">${getInitials(nome)}</div>
+                            <div>
+                                <div class="user-name">${esc(nome)}</div>
+                                <div class="user-email">${esc(email)}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="color:#a3a3a3">${esc(tel) || '—'}</td>
+                    <td>
+                        <div class="actions">
+                            <button class="btn btn-sm btn-ghost" onclick="startEdit(${id})">
+                                <i class="ti ti-edit"></i> Editar
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteUser(${id})">
+                                <i class="ti ti-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>`;
+            }).join('');
+        }
+
+        /* ════════════════════════════════════
+           UTILITÁRIOS
+           ════════════════════════════════════ */
+        function getInitials(name) {
+            return (name || '?').trim().split(' ')
+                .slice(0, 2).map(w => w[0]).join('').toUpperCase();
+        }
+
+        function esc(s) {
+            return String(s || '')
+                .replace(/&/g,'&amp;')
+                .replace(/</g,'&lt;')
+                .replace(/>/g,'&gt;')
+                .replace(/"/g,'&quot;');
+        }
+
+        function showToast(msg, type = 'success') {
+            const t = document.getElementById('toast');
+            const icon = type === 'error' ? 'ti-x' : 'ti-check';
+            t.innerHTML = `<i class="ti ${icon}"></i> ${msg}`;
+            t.className = `toast ${type} show`;
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => t.className = 'toast', 2600);
+        }
+
+        /* ── Inicia carregando os dados ── */
+        init();
 
     </script>
 

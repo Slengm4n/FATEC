@@ -2,75 +2,44 @@ package com.sistema.estacionamento.controller;
 
 import com.sistema.estacionamento.model.Usuario;
 import com.sistema.estacionamento.repository.UsuarioRepository;
-
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/usuarios-html")
 @RequiredArgsConstructor
 public class UsuarioHtmlController {
 
     private final UsuarioRepository usuarioRepository;
 
-    // CREATE
-    @PostMapping("/salvar")
-    public String salvarUsuario(
-            @RequestParam String nomeUsuario,
-            @RequestParam String email,
-            @RequestParam String telefone
-    ) {
-
-        Usuario usuario = new Usuario();
-
-        usuario.setNomeUsuario(nomeUsuario);
-        usuario.setEmail(email);
-        usuario.setTelefone(telefone);
-
-        usuarioRepository.save(usuario);
-
-        return "redirect:/usuarios.html";
+    // READ - listar todos
+    @GetMapping("/listar")
+    public List<Usuario> listar() {
+        return usuarioRepository.findAll();
     }
 
-    // READ
-    @GetMapping("/buscar")
-    @ResponseBody
-    public Usuario buscarUsuario(@RequestParam Long id) {
-
-        return usuarioRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Usuário não encontrado com id: " + id));
+    // CREATE
+    @PostMapping("/salvar")
+    public Usuario salvar(@RequestBody Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
 
     // UPDATE
-    @PostMapping("/atualizar")
-    public String atualizarUsuario(
-            @RequestParam Long id,
-            @RequestParam String nomeUsuario,
-            @RequestParam String email,
-            @RequestParam String telefone
-    ) {
-
-        Usuario usuario = new Usuario();
-
-        usuario.setId(id);
-        usuario.setNomeUsuario(nomeUsuario);
-        usuario.setEmail(email);
-        usuario.setTelefone(telefone);
-
-        usuarioRepository.save(usuario);
-
-        return "redirect:/usuarios-crud.html";
+    @PutMapping("/atualizar/{id}")
+    public Usuario atualizar(@PathVariable Long id, @RequestBody Usuario dados) {
+        Usuario usuario = usuarioRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        usuario.setNomeUsuario(dados.getNomeUsuario());
+        usuario.setEmail(dados.getEmail());
+        usuario.setTelefone(dados.getTelefone());
+        return usuarioRepository.save(usuario);
     }
 
     // DELETE
-    @PostMapping("/excluir")
-    public String excluirUsuario(@RequestParam Long id) {
-
+    @DeleteMapping("/excluir/{id}")
+    public void excluir(@PathVariable Long id) {
         usuarioRepository.deleteById(id);
-
-        return "redirect:/usuarios-crud.html";
     }
 }
